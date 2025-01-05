@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <script defer src="conf.js"></script>
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link href="confCSS.css" rel="stylesheet">
+  <title>Conference ticket generator</title>
+
+    
+</head>
+
+
+<body>
+  <header>
+    <div class="div1">
+      <img class="image1" src="assets/images/logo-mark.svg"><span class="span1">Coding Conf</span>
+    </div>
+    <h1 class="h1A">Your Journey to Coding Conf 2025 Starts Here!</h1>
+    <p class="span2">Secure your spot at next year's biggest coding conference</p>
+  </header>
+
+  <input id="file" style="display:none" type="file">
+  <main>
+    <section id="section0">
+      <label class="label1">Upload Avatar</label>
+      <br><br>
+      <div class="div2">
+        <img alt='upload icon' class="image2" src="assets/images/icon-upload.svg">
+        <span class="span3">Drag and drop or click to upload</span>
+        <!--<button class="button1">Remove Image</button> <button class="button2">Change Image</button>-->
+
+
+      </div>
+      <img alt="info icon" class="infoIcon" src="assets/images/icon-info.svg"><span class="span">Upload your photo (JPG or PNG, max-size: 500kb).</span>
+    </section>
+
+    <section id="section1">
+      <fieldset>
+          <form>
+          <label for="name">Full Name*</label><br>
+          <input autocomplete="off" id="name" required type="text"><br>
+          <span id="name" class="nameError"></span><br>
+
+          <label for="email">Email Address*</label><br>
+          <input id="email" placeholder="  example@email.com" required type="text"><br>
+          <img id="email" class="iconInfo2" src="assets/images/icon-info.svg"><span class="emailError"></span><br>
+
+          <label for="gitHub">Github Username</label><br>
+          <input id="gitHub" placeholder="  @yourusername" type="text"><br>
+          <br><br>
+
+          <button class="button3">Generate My Ticket</button>
+          </form>
+      </fieldset>
+    </section>
+  </main>
+
+  <section class="section2">
+    <h1 class="h1B">Congrats, <span class="spanName">Name placeholder!</span> Your ticket is ready.</h1>
+    <p>We've emailed your ticket to <span class="spanEmail">Email placeholder</span> and will send updates in the run up to the event.</p>
+
+    <div class="div5">
+      <image alt="ticket" class="ticket" src="assets/images/pattern-ticket.svg"><img alt='logo' class="imagelogo" src="assets/images/logo-full.svg"><span class="spanDate">Jan 31, 2025 / Austin, TX</span></image>
+      <img alt="your image" class="avatar" src="assets/images/image-avatar.jpg">
+      <span class="yourName">Name placeholder</span>
+      <img alt="gitHub icon" class='gitIcon' src="assets/images/icon-github.svg">
+      <span class="yourGit">No gitHub Username provided</span>
+      <span class="ticketNo">#01609</span>
+    </div>
+  </section>
+
+  <br><br>
+
+ <footer>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+      Coded by <a href="#">Dullarzee</a>.
+    </div>
+ </footer>
+</body>
+</html>
