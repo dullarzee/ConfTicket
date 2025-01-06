@@ -23,7 +23,7 @@ let globalFile;
 
 const successSection = (e)=>{
     e.preventDefault();
-    if(pictureDiv.children[2].display !== 'none')
+    if(pictureDiv.childElementCount > 2 && pictureDiv.children[2].style.display !== 'none')
     {
         section2.style.display = 'block';
         section1.style.display = 'none';
@@ -93,10 +93,6 @@ const displayImage = (file) =>{
     //checking for image files compatibility
     if(file.type === 'image/jpeg' || 'image/png')
     {
-        if(pictureDiv.childElementCount >= 6)
-            {
-                console.log('surpassed barrier');
-            }
             
         if(file.size <= 500000)
         {
@@ -189,6 +185,26 @@ function change()
 });
 }
 
+const change2 = (file)=>{
+    if(pictureDiv.childElementCount === 6)
+    {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file[0]);
+            img.alt = 'your picture';
+            img.classList.add('avatar0');
+            pictureDiv.replaceChild(img, pictureDiv.children[2]);
+            globalFile = file[0];
+            pictureDiv.children[0].style.display = 'none';
+            pictureDiv.children[1].style.display = 'none';
+            pictureDiv.children[2].style.display = '';
+            pictureDiv.children[3].style.display = '';
+            pictureDiv.children[4].style.display = '';
+            pictureDiv.children[5].style.display = '';
+
+            
+    }
+}
+
 
 //beginning function when selecting image with a click 
 function byClick(e)
@@ -278,48 +294,62 @@ pictureDiv.addEventListener('drop',(e)=>{
     const files = e.dataTransfer.files;
     if(files[0].type === 'image/jpeg' || 'image/png')
     {
-        if(pictureDiv.children[2].textContent === 'Remove image')
+        if(pictureDiv.childElementCount !== 6)
         {
-            return;
-        }
-        console.log(files[0]);
-        if(files[0].size <= 600000)
-        {
-            const img = document.createElement('img');
-            img.src = URL.createObjectURL(files[0]);
-            img.alt = 'your picture';
-            img.classList.add('avatar0');
-            pictureDiv.replaceChild(img, pictureDiv.children[0]);
-            img.onload = ()=> revokeObjectURL(files[0].src);
-            pictureDiv.removeChild(pictureDiv.children[2]);
-            const button1 = document.createElement('button');
-            button1.classList.add('button1');
-            button1.textContent = 'Remove image';
-            pictureDiv.appendChild(button1);
-            const button2 = document.createElement('button');
-            button2.classList.add('button2');
-            button2.textContent = 'Change image';
-            pictureDiv.appendChild(button2);
-            uploadError.textContent = 'Upload your photo (JPG or PNG, max-size: 500kb).';
-            button1.addEventListener('click',(e)=>{
-                const uploadImg = document.createElement('img');
-                uploadImg.src = 'assets/images/icon-upload.svg';
-                uploadImg.alt = 'Click to upload';
-                uploadImg.classList.add('image2');
-                pictureDiv.replaceChild(uploadImg, pictureDiv.children[0]);
-                pictureDiv.removeChild(pictureDiv.children[2]);
-                pictureDiv.removeChild(pictureDiv.children[2]);
-                const span = document.createElement('span');
-                span.classList.add('span3');
-                span.textContent = 'Drag and drop or click to upload';
-                pictureDiv.appendChild(span);
-            });
-            button2.addEventListener('click', byClick);
+            if(files[0].size <= 600000)
+            {
+                 //the process of adding user image and buttons to div
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(files[0]);
+                img.alt = 'your picture';
+                img.classList.add('avatar0');
+                pictureDiv.appendChild(img);
+                globalFile = files[0];
+                const brake = document.createElement('br');
+                pictureDiv.appendChild(brake);
+                const button1 = document.createElement('button');
+                button1.classList.add('button1');
+                button1.textContent = 'Remove image';
+                pictureDiv.appendChild(button1);
+                const button2 = document.createElement('button');
+                button2.classList.add('button2');
+                button2.textContent = 'Change image';
+                pictureDiv.appendChild(button2);
 
+                pictureDiv.children[0].style.display = 'none';
+                pictureDiv.children[1].style.display = 'none';
+
+                //adding a listener to first button incase of 
+                // user wanting to remove photo
+                button1.addEventListener('click',()=>{
+                    removeImage();
+                });
+
+                //adding a listener to second button incase of user 
+                //reselecting a photo
+                button2.addEventListener('click', ()=>{
+                    fileInput.click();
+                    change();
+                });
+                }
+                else
+                {
+                    uploadError.textContent = 'File too large. Please upload a file under 500kb';
+                }
+               
         }
-        else
+        else if(pictureDiv.childElementCount === 6)
         {
-            uploadError.textContent = 'File too large. Please upload a fle under 500kb';
+            if(pictureDiv.children[2].style.display !== 'none')
+            {
+                console.log('blocked trying to layer an image on another');
+                return;
+            }
+            else
+            {
+                change2(files);
+            }
+            
         }
     }
 });

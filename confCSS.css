@@ -8,11 +8,15 @@ body{
     min-height: 100vh;
     max-width: 100vw;
     color:white;
-    background-image: url('assets/images/background-desktop.png'),
-    url('assets/images/pattern-lines.svg');
-    background-position:cover, top;
-    background-size:cover, cover;
-    background-repeat: no-repeat, repeat;
+    background-image:
+    url('assets/images/pattern-squiggly-line-top.svg'),
+    url('assets/images/pattern-squiggly-line-bottom.svg'),
+    url('assets/images/pattern-lines.svg'),
+    url('assets/images/pattern-circle.svg'), 
+    url('assets/images/background-desktop.png');
+    background-position:top right, bottom left, top, center right, center;
+    background-size:25%, 50%, auto, 18%, cover;
+    background-repeat:no-repeat, no-repeat, repeat, no-repeat, no-repeat;
 
 }
 fieldset{
@@ -60,7 +64,8 @@ header{
     height:8em;
     border:1px dashed hsl(252, 6%, 83%);
     border-radius:10px;
-    place-self: center;
+    position:relative;
+    left:30%;
     backdrop-filter: blur(10px);
     align-items: center;
     justify-items: center;
@@ -190,6 +195,7 @@ p{
     width:18%;
     height: 1.4em;
     margin-right:1.5%;
+    font-size:0.7em;
 }
 .button2{
     width:18%;
@@ -198,13 +204,16 @@ p{
     border-radius: 3px;
     background-color:rgba(255, 255, 255, 0.2);
     color:hsl(252, 6%, 83%);
+    font-size: 0.7em;
 }
 .button1:hover{
     cursor:pointer;
+    text-decoration-line: underline;
 
 }
 .button2:hover{
     cursor:pointer;
+    text-decoration-line: underline;
 
 }
 
@@ -316,11 +325,12 @@ button:hover{
     }
     .label1{
         position:relative;
-        left:1.5%;
+        left:10%;
 
     }
     .div2{
         width:80%;
+        left:10%;
     }
     .span3{
         left:10%;
@@ -343,7 +353,7 @@ button:hover{
     input{
         width:85%;
     }
-    button{
+    .button3{
         width:87%;
     }
     .section2{
